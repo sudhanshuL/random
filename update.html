@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  Update here
+  <!-- <a href="update.html">For updating user</a> -->
+  Enter-id 
+  <input type="int" name="id" id='nam' class="form-field">
+  <form action="">
+    <label for="username">Username</label>
+    <input type="text" name="username" id='name' class="form-field">
+    <br>
+    <label for="username">Email</label>
+    <input type="text" name="email" id='name' class="form-field">
+  </form>
+
+  <button type="" onclick=add() class="button-23" role="button">Update</button>
+
+  <script>
+    
+    function add() {
+      const save=document.getElementById('nam')
+      console.log(save.value,save)
+      const form = document.querySelector('form');
+      const formdata = new FormData(form);
+      const res = Object.fromEntries(formdata)
+      console.log(formdata)
+      for (item of formdata) {
+        console.log(item[0], item[1]);
+      }
+      const json_string = JSON.stringify(
+        res
+      )
+      console.log(json_string);
+      const requestOptions = {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: json_string
+      }
+      fetch(`http://127.0.0.1:8000/user/${save.value}/update`, requestOptions)
+        .then(results => results.json())
+        .then(console.log)
+    }
+
+  </script>
+
+</body>
+
+</html>

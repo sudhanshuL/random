@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    Delete User
+    <input type="int" name="id" id='nam' class="form-field">
+    <button type="" onclick=add() class="button-23" role="button">Delete user</button>
+    <script>
+        function add() {
+            const save = document.getElementById('nam')
+            console.log(save.value, save)
+            
+            const requestOptions = {
+                
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+                
+            }
+            fetch(`http://127.0.0.1:8000/user/delete/${save.value}`,requestOptions)
+                .then(results => results.json())
+                .then(console.log)
+        }
+
+    </script>
+</body>
+
+</html>
